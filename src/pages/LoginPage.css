@@ -1,0 +1,89 @@
+.loginWrap {
+  height: 100vh;
+  display: grid;
+  place-items: center;
+  background: #0b0f17;
+}
+
+.loginCard {
+  width: min(420px, 92vw);
+  border-radius: 16px;
+  padding: 18px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
+}
+
+.loginTitle {
+  font-weight: 900;
+  font-size: 22px;
+}
+.loginSub {
+  margin-top: 6px;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 13px;
+}
+
+.loginForm {
+  margin-top: 16px;
+  display: grid;
+  gap: 10px;
+}
+.loginLabel {
+  display: grid;
+  gap: 6px;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.loginInput {
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.07);
+  color: #fff;
+  outline: none;
+}
+.loginInput:focus {
+  border-color: rgba(255, 255, 255, 0.24);
+}
+
+.loginBtn {
+  margin-top: 6px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.14);
+  color: #fff;
+  cursor: pointer;
+}
+.loginBtn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.loginError {
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 80, 80, 0.35);
+  background: rgba(255, 80, 80, 0.12);
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 13px;
+}
+
+.loginHint {
+  margin-top: 6px;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.65);
+}
+
+.loginLogo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loginLogo img {
+  display: block;
+  max-width: 100%;
+}

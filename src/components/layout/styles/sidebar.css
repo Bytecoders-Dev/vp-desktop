@@ -1,0 +1,84 @@
+.sidebar {
+  background: var(--sidebar-bg);
+  height: 100vh;
+  overflow: hidden;
+  border-right: 1px solid var(--border);
+  padding: 12px;
+  --vp-logo-width: 150px;
+}
+
+/* brand */
+.sidebarBrand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 12px;
+}
+
+.brandBadge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.brandTitle {
+  font-weight: 800;
+}
+.brandSubtitle {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.75);
+  margin-top: 2px;
+}
+
+.sidebarNav {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+/* ===== Tablet “rail” ===== */
+@media (max-width: 1200px) {
+  .sidebar {
+    --vp-logo-width: 60px;
+    padding: 10px 8px;
+  }
+
+  .sidebarBrand {
+    padding: 2px 8px 12px;
+  }
+
+  /* oculta textos en rail */
+  .brandText {
+    display: none;
+  }
+}
+
+/* ===== Móvil drawer ===== */
+@media (max-width: 900px) {
+  .sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: min(var(--sidebar-w), 88vw);
+    transform: translateX(-105%);
+    transition: transform 0.2s ease;
+    z-index: 30;
+    box-shadow: var(--shadow);
+    --vp-logo-width: 150px;
+    padding: 0 8px 0;
+    background: var(--bg);
+  }
+  .sidebar.isOpen {
+    transform: translateX(0);
+  }
+
+  .sidebarOverlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    z-index: 20;
+  }
+}

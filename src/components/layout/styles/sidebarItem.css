@@ -1,0 +1,95 @@
+:root[data-theme="light"] .sbLabel {
+  font-weight: 700;
+  color: var(--text);
+}
+
+:root[data-theme="light"] .sbTooltip {
+  font-weight: 600;
+}
+
+:root[data-theme="light"] .sbIcon {
+  filter: saturate(1.1);
+}
+
+.sbItem {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  text-decoration: none;
+  color: #fff;
+
+  padding: 10px 10px;
+  border-radius: 12px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  overflow: visible;
+}
+
+.sbItem:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.18);
+}
+
+.sbIcon {
+  width: 22px;
+  display: grid;
+  place-items: center;
+  font-size: 18px;
+}
+
+.sbLabel {
+  white-space: nowrap;
+}
+
+/* Tooltip base (oculto) */
+.sbTooltip {
+  max-width: 220px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  position: absolute;
+  left: calc(100% + 10px);
+  top: 50%;
+  transform: translateY(-50%);
+  opacity: 0;
+  pointer-events: none;
+
+  background: rgba(0, 0, 0, 0.7);
+  color: #fff;
+  border: 1px solid var(--border);
+  padding: 6px 10px;
+  border-radius: 10px;
+  font-size: 13px;
+  white-space: nowrap;
+  box-shadow: var(--shadow);
+}
+
+/* ===== Tablet rail: ocultamos texto y mostramos tooltip al hover ===== */
+@media (max-width: 1200px) {
+  .sbItem {
+    justify-content: center;
+    padding: 12px 10px;
+  }
+
+  .sbLabel {
+    display: none;
+  }
+
+  .sbItem:hover .sbTooltip {
+    opacity: 1;
+  }
+}
+
+/* En móvil (drawer) sí queremos el texto visible */
+@media (max-width: 900px) {
+  .sbItem {
+    justify-content: flex-start;
+  }
+  .sbLabel {
+    display: inline;
+  }
+  .sbTooltip {
+    display: none;
+  }
+}

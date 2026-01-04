@@ -1,0 +1,32 @@
+{
+  "app": {
+    "name": "VP App"
+  },
+  "header": {
+    "action": "Acción",
+    "language": "Idioma",
+    "openMenu": "Abrir menú",
+    "logout": "Cerrar sesión"
+  },
+  "login": {
+    "title": "VP App",
+    "enter": "Entrar",
+    "username": "Usuario",
+    "password": "Contraseña",
+    "validating": "Validando...",
+    "invalid": "Credenciales inválidas.",
+    "attemptsLeft": "Intentos restantes",
+    "subtitle": "Inicia sesión"
+  },
+  "sidebar": {
+    "brandSubtitle": "Diseño de escritorio",
+    "items": {
+      "home": "Inicio",
+      "projects": "Proyectos",
+      "tools": "Herramientas"
+    }
+  },
+  "appShell": {
+    "description": "En móvil el menú es drawer. En tablet el menú se queda visible en modo rail (solo iconos con tooltip). En desktop se muestra completo."
+  }
+}

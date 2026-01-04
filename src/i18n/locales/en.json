@@ -1,0 +1,32 @@
+{
+  "app": {
+    "name": "VP App"
+  },
+  "header": {
+    "action": "Action",
+    "logout": "Sign out",
+    "language": "Language",
+    "openMenu": "Open menu"
+  },
+  "login": {
+    "title": "VP App",
+    "enter": "Sign in",
+    "username": "Username",
+    "password": "Password",
+    "validating": "Validating...",
+    "attemptsLeft": "Attempts left",
+    "invalid": "Invalid credentials.",
+    "subtitle": "Sign in"
+  },
+  "sidebar": {
+    "brandSubtitle": "Desktop layout",
+    "items": {
+      "home": "Home",
+      "tools": "Tools",
+      "projects": "Projects"
+    }
+  },
+  "appShell": {
+    "description": "On mobile the menu is a drawer. On tablet the menu stays visible in rail mode (icons only with tooltip). On desktop it is shown fully."
+  }
+}
