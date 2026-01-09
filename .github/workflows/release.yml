@@ -1,0 +1,77 @@
+name: release
+
+on:
+  push:
+    tags:
+      - "v*.*.*"
+
+permissions:
+  contents: write
+
+jobs:
+  build-windows:
+    runs-on: windows-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install deps
+        run: npm ci
+
+      - name: Install Rust
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: Build Tauri (prod config)
+        env:
+          TAURI_SIGNING_PRIVATE_KEY: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY }}
+          TAURI_SIGNING_PRIVATE_KEY_PASSWORD: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY_PASSWORD }}
+        run: npm run tauri build -- --config src-tauri/tauri.conf.json
+
+      - name: Collect assets
+        shell: pwsh
+        run: |
+          New-Item -ItemType Directory -Force -Path assets | Out-Null
+          Copy-Item -Recurse -Force "src-tauri\target\release\bundle\**\*" "assets\" -ErrorAction SilentlyContinue
+          Get-ChildItem -Recurse assets | Select-Object FullName
+
+      - name: Create latest.json (from exe + exe.sig)
+        shell: pwsh
+        run: |
+          $tag = "${{ github.ref_name }}"
+          $version = $tag.Replace("v","")
+          $ownerRepo = "${{ github.repository }}"
+          $pubDate = (Get-Date).ToUniversalTime().ToString("yyyy-MM-ddTHH:mm:ssZ")
+
+          $exe = Get-ChildItem -Path assets -Recurse -Filter *.exe | Select-Object -First 1
+          if (-not $exe) { throw "No .exe found in assets. Check bundle output." }
+
+          $sigPath = "$($exe.FullName).sig"
+          if (-not (Test-Path $sigPath)) { throw "No .sig found for exe at: $sigPath" }
+
+          $sig = (Get-Content $sigPath -Raw).Trim()
+          $url = "https://github.com/$ownerRepo/releases/download/$tag/$($exe.Name)"
+
+          $latest = @{
+            version = $version
+            notes = "Ver notas en GitHub Release."
+            pub_date = $pubDate
+            platforms = @{
+              "windows-x86_64" = @{
+                url = $url
+                signature = $sig
+              }
+            }
+          } | ConvertTo-Json -Depth 10
+
+          $latest | Out-File -FilePath "assets\latest.json" -Encoding utf8
+          Get-Content "assets\latest.json"
+
+      - name: Create GitHub Release + upload assets
+        uses: softprops/action-gh-release@v2
+        with:
+          files: assets/**
+          generate_release_notes: true

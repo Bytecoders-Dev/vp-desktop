@@ -1,24 +1,32 @@
 {
   "$schema": "https://schema.tauri.app/config/2",
-  "productName": "vp-app",
+  "productName": "VP 360",
   "version": "0.1.0",
   "identifier": "com.bytecoders.vp",
   "build": {
-    "beforeDevCommand": "npm run dev",
-    "devUrl": "http://localhost:1420",
     "beforeBuildCommand": "npm run build",
     "frontendDist": "../dist"
   },
   "app": {
     "windows": [
       {
-        "title": "vp-app",
+        "title": "VP 360",
         "width": 800,
         "height": 600
       }
     ],
     "security": {
-      "csp": null
+      "csp": "default-src 'self'; img-src 'self' asset: https: data:; style-src 'self' 'unsafe-inline'; script-src 'self'; connect-src 'self' https://github.com https://api.github.com;"
+    }
+  },
+  "plugins": {
+    "updater": {
+      "active": true,
+      "endpoints": [
+        "https://github.com/Bytecoders-Dev/vp-desktop/releases/latest/download/latest.json"
+      ],
+      "dialog": true,
+      "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IDc3NzBBMEI4RkRDREEzOTcKUldTWG84Mzl1S0J3ZDMyakk2R0FRVzVtcEtCNGVvc0crK3JXZFJBdFU4VDJFQmp6bXNLa21YWGIK"
     }
   },
   "bundle": {
