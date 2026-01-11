@@ -27,6 +27,11 @@ jobs:
       - name: Install Rust
         uses: dtolnay/rust-toolchain@stable
 
+      - name: Clean Tauri target
+        shell: pwsh
+        run: |
+          if (Test-Path "src-tauri\target") { Remove-Item -Recurse -Force "src-tauri\target" }
+
       - name: Build Tauri (prod config)
         env:
           TAURI_SIGNING_PRIVATE_KEY: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY }}
@@ -59,17 +64,25 @@ jobs:
           $ownerRepo = "${{ github.repository }}"
           $pubDate = (Get-Date).ToUniversalTime().ToString("yyyy-MM-ddTHH:mm:ssZ")
 
-          # Busca el artefacto del updater (v1 compatible)
+          # Busca el zip de updater (v1Compatible)
           $zip = Get-ChildItem -Path assets -Recurse -Filter "*.nsis.zip" | Select-Object -First 1
           if (-not $zip) {
             throw "No *.nsis.zip found in assets. Ensure tauri.conf.json bundle.createUpdaterArtifacts is set to 'v1Compatible'."
+          }
+
+          # Validar que el nombre del zip contenga la versión del tag
+          if ($zip.Name -notmatch [regex]::Escape($version)) {
+            throw "Updater zip name does not match tag version. Tag=$version Zip=$($zip.Name). You are likely uploading old artifacts."
           }
 
           $sigFile = Get-ChildItem -Path $zip.DirectoryName -Filter "$($zip.Name).sig" -ErrorAction SilentlyContinue | Select-Object -First 1
           if (-not $sigFile) { throw "No .sig found for zip: $($zip.FullName)" }
 
           $sig = (Get-Content $sigFile.FullName -Raw).Trim()
-          $url = "https://github.com/$ownerRepo/releases/download/$tag/$($zip.Name)"
+
+          # URL encoding del nombre del archivo
+          $encodedName = [uri]::EscapeDataString($zip.Name)
+          $url = "https://github.com/$ownerRepo/releases/download/$tag/$encodedName"
 
           $latest = @{
             version = $version

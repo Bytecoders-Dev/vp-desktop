@@ -1,7 +1,7 @@
 {
   "$schema": "https://schema.tauri.app/config/2",
-  "productName": "VP 360",
-  "version": "0.1.1",
+  "productName": "vp_360",
+  "version": "1.0.0",
   "identifier": "com.bytecoders.vp",
   "build": {
     "beforeBuildCommand": "npm run build",
@@ -10,7 +10,7 @@
   "app": {
     "windows": [
       {
-        "title": "VP 360",
+        "title": "vp_360",
         "width": 800,
         "height": 600
       }
