@@ -45,7 +45,7 @@ jobs:
           Write-Host "=== Assets copied ==="
           Get-ChildItem -Recurse assets | Select-Object FullName
 
-      - name: Create latest.json (prefer NSIS setup.exe)
+      - name: Create latest.json (Windows - prefer NSIS updater bundle)
         shell: pwsh
         run: |
           $tag = "${{ github.ref_name }}"
@@ -53,16 +53,15 @@ jobs:
           $ownerRepo = "${{ github.repository }}"
           $pubDate = (Get-Date).ToUniversalTime().ToString("yyyy-MM-ddTHH:mm:ssZ")
 
-          # Prefer NSIS setup exe (e.g. VP 360_0.1.0_x64-setup.exe)
-          $exe = Get-ChildItem -Path assets -Recurse -Filter "*-setup.exe" | Select-Object -First 1
-          if (-not $exe) { throw "No *-setup.exe found in assets. Check nsis output." }
+          # Updater bundle for NSIS on Windows is *.nsis.zip (NOT the setup.exe)
+          $zip = Get-ChildItem -Path assets -Recurse -Filter "*.nsis.zip" | Select-Object -First 1
+          if (-not $zip) { throw "No *.nsis.zip found in assets. Make sure bundle.createUpdaterArtifacts=true" }
 
-          # Signature next to exe
-          $sigFile = Get-ChildItem -Path $exe.DirectoryName -Filter "$($exe.Name).sig" -ErrorAction SilentlyContinue | Select-Object -First 1
-          if (-not $sigFile) { throw "No .sig found for exe: $($exe.FullName)" }
+          $sigFile = Get-ChildItem -Path $zip.DirectoryName -Filter "$($zip.Name).sig" -ErrorAction SilentlyContinue | Select-Object -First 1
+          if (-not $sigFile) { throw "No .sig found for updater bundle: $($zip.FullName)" }
 
           $sig = (Get-Content $sigFile.FullName -Raw).Trim()
-          $url = "https://github.com/$ownerRepo/releases/download/$tag/$($exe.Name)"
+          $url = "https://github.com/$ownerRepo/releases/download/$tag/$($zip.Name)"
 
           $latest = @{
             version = $version
