@@ -33,6 +33,12 @@ jobs:
           TAURI_SIGNING_PRIVATE_KEY_PASSWORD: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY_PASSWORD }}
         run: npm run tauri build -- --config src-tauri/tauri.conf.json
 
+      - name: Debug - list bundle nsis output
+        shell: pwsh
+        run: |
+          Write-Host "=== src-tauri/target/release/bundle/nsis ==="
+          Get-ChildItem -Recurse "src-tauri\target\release\bundle\nsis" | Select-Object FullName
+
       - name: Collect assets
         shell: pwsh
         run: |
@@ -45,7 +51,7 @@ jobs:
           Write-Host "=== Assets copied ==="
           Get-ChildItem -Recurse assets | Select-Object FullName
 
-      - name: Create latest.json (Windows - prefer NSIS updater bundle)
+      - name: Create latest.json (Windows - NSIS zip + sig)
         shell: pwsh
         run: |
           $tag = "${{ github.ref_name }}"
@@ -53,12 +59,14 @@ jobs:
           $ownerRepo = "${{ github.repository }}"
           $pubDate = (Get-Date).ToUniversalTime().ToString("yyyy-MM-ddTHH:mm:ssZ")
 
-          # Updater bundle for NSIS on Windows is *.nsis.zip (NOT the setup.exe)
+          # Busca el artefacto del updater (v1 compatible)
           $zip = Get-ChildItem -Path assets -Recurse -Filter "*.nsis.zip" | Select-Object -First 1
-          if (-not $zip) { throw "No *.nsis.zip found in assets. Make sure bundle.createUpdaterArtifacts=true" }
+          if (-not $zip) {
+            throw "No *.nsis.zip found in assets. Ensure tauri.conf.json bundle.createUpdaterArtifacts is set to 'v1Compatible'."
+          }
 
           $sigFile = Get-ChildItem -Path $zip.DirectoryName -Filter "$($zip.Name).sig" -ErrorAction SilentlyContinue | Select-Object -First 1
-          if (-not $sigFile) { throw "No .sig found for updater bundle: $($zip.FullName)" }
+          if (-not $sigFile) { throw "No .sig found for zip: $($zip.FullName)" }
 
           $sig = (Get-Content $sigFile.FullName -Raw).Trim()
           $url = "https://github.com/$ownerRepo/releases/download/$tag/$($zip.Name)"
