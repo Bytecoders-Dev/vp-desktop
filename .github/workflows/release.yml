@@ -13,9 +13,11 @@ jobs:
     runs-on: windows-latest
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
 
-      - uses: actions/setup-node@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
         with:
           node-version: 20
 
@@ -35,10 +37,15 @@ jobs:
         shell: pwsh
         run: |
           New-Item -ItemType Directory -Force -Path assets | Out-Null
-          Copy-Item -Recurse -Force "src-tauri\target\release\bundle\**\*" "assets\" -ErrorAction SilentlyContinue
+
+          if (Test-Path "src-tauri\target\release\bundle") {
+            Copy-Item -Recurse -Force "src-tauri\target\release\bundle\*" "assets\" -ErrorAction SilentlyContinue
+          }
+
+          Write-Host "=== Assets copied ==="
           Get-ChildItem -Recurse assets | Select-Object FullName
 
-      - name: Create latest.json (from exe + exe.sig)
+      - name: Create latest.json (prefer NSIS setup.exe)
         shell: pwsh
         run: |
           $tag = "${{ github.ref_name }}"
@@ -46,13 +53,15 @@ jobs:
           $ownerRepo = "${{ github.repository }}"
           $pubDate = (Get-Date).ToUniversalTime().ToString("yyyy-MM-ddTHH:mm:ssZ")
 
-          $exe = Get-ChildItem -Path assets -Recurse -Filter *.exe | Select-Object -First 1
-          if (-not $exe) { throw "No .exe found in assets. Check bundle output." }
+          # Prefer NSIS setup exe (e.g. VP 360_0.1.0_x64-setup.exe)
+          $exe = Get-ChildItem -Path assets -Recurse -Filter "*-setup.exe" | Select-Object -First 1
+          if (-not $exe) { throw "No *-setup.exe found in assets. Check nsis output." }
 
-          $sigPath = "$($exe.FullName).sig"
-          if (-not (Test-Path $sigPath)) { throw "No .sig found for exe at: $sigPath" }
+          # Signature next to exe
+          $sigFile = Get-ChildItem -Path $exe.DirectoryName -Filter "$($exe.Name).sig" -ErrorAction SilentlyContinue | Select-Object -First 1
+          if (-not $sigFile) { throw "No .sig found for exe: $($exe.FullName)" }
 
-          $sig = (Get-Content $sigPath -Raw).Trim()
+          $sig = (Get-Content $sigFile.FullName -Raw).Trim()
           $url = "https://github.com/$ownerRepo/releases/download/$tag/$($exe.Name)"
 
           $latest = @{
