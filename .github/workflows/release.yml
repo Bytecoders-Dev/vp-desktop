@@ -79,6 +79,18 @@ jobs:
           $latest | Out-File -FilePath "assets\latest.json" -Encoding utf8
           Get-Content "assets\latest.json"
 
+      - name: Debug - list installers and sigs
+        shell: pwsh
+        run: |
+          Write-Host "=== EXE files ==="
+          Get-ChildItem -Path assets -Recurse -Filter "*.exe" | Select-Object FullName
+
+          Write-Host "=== MSI files ==="
+          Get-ChildItem -Path assets -Recurse -Filter "*.msi" | Select-Object FullName
+
+          Write-Host "=== SIG files ==="
+          Get-ChildItem -Path assets -Recurse -Filter "*.sig" | Select-Object FullName
+
       - name: Create GitHub Release + upload assets
         uses: softprops/action-gh-release@v2
         with:
