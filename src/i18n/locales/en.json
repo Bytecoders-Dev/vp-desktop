@@ -1,6 +1,6 @@
 {
   "app": {
-    "name": "VP App"
+    "name": "VP 360"
   },
   "header": {
     "action": "Action",
@@ -9,7 +9,7 @@
     "openMenu": "Open menu"
   },
   "login": {
-    "title": "VP App",
+    "title": "VP 360",
     "enter": "Sign in",
     "username": "Username",
     "password": "Password",

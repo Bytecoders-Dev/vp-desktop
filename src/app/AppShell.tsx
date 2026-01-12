@@ -26,7 +26,7 @@ export function AppShell() {
         <MainHeader onOpenSidebar={() => setSidebarOpen(true)} />
         <main className="mainContent">
           <div className="card">
-            <h2 style={{ margin: "0 0 8px" }}>VP App</h2>
+            <h2 style={{ margin: "0 0 8px" }}>VP 360</h2>
             <p style={{ margin: 0, color: "var(--muted)", lineHeight: 1.5 }}>
               {t("appShell.description")}
             </p>
