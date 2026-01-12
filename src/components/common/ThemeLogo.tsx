@@ -9,7 +9,7 @@ type ThemeLogoProps = {
   className?: string;
 };
 
-export function ThemeLogo({ size, alt = "VP App", className }: ThemeLogoProps) {
+export function ThemeLogo({ size, alt = "VP 360", className }: ThemeLogoProps) {
   const { theme } = useTheme();
   const src = theme === "dark" ? darkLogo : lightLogo;
 

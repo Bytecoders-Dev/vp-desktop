@@ -2,6 +2,7 @@ import "./styles/mainHeader.css";
 import { useAuth } from "../../auth/auth.store";
 import { useTranslation } from "react-i18next";
 import { useTheme } from "../../theme/theme.store";
+import { UpdateButton } from "../../updater/UpdateButton";
 
 type MainHeaderProps = {
   onOpenSidebar: () => void;
@@ -61,6 +62,8 @@ export function MainHeader({ onOpenSidebar }: MainHeaderProps) {
         >
           {theme === "dark" ? "☀️" : "🌙"}
         </button>
+
+        <UpdateButton />
 
         <button className="iconBtn" type="button" onClick={logout}>
           {t("header.logout")}
