@@ -27,6 +27,6 @@
     }
   },
   "appShell": {
-    "description": "On mobile the menu is a drawer. On tablet the menu stays visible in rail mode (icons only with tooltip). On desktop it is shown fully."
+    "description": "v1.0.4 On mobile the menu is a drawer. On tablet the menu stays visible in rail mode (icons only with tooltip). On desktop it is shown fully."
   }
 }

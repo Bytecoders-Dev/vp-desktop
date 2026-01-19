@@ -27,6 +27,6 @@
     }
   },
   "appShell": {
-    "description": "En móvil el menú es drawer. En tablet el menú se queda visible en modo rail (solo iconos con tooltip). En desktop se muestra completo."
+    "description": "v1.0.4 En móvil el menú es drawer. En tablet el menú se queda visible en modo rail (solo iconos con tooltip). En desktop se muestra completo."
   }
 }
