@@ -1,8 +1,9 @@
 import "./styles/mainHeader.css";
-import { useAuth } from "../../auth/auth.store";
+
 import { useTranslation } from "react-i18next";
 import { useTheme } from "../../theme/theme.store";
 import { UpdateButton } from "../../updater/UpdateButton";
+import { useAuth } from "../../auth/auth.store";
 
 type MainHeaderProps = {
   onOpenSidebar: () => void;
