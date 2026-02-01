@@ -1,5 +1,5 @@
+import { LoginPage } from "../app/auth/LoginPage";
 import { useAuth } from "./auth.store";
-import { LoginPage } from "../pages/LoginPage";
 
 export function RequireAuth({ children }: { children: React.ReactNode }) {
   const { user } = useAuth();

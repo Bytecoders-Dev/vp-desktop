@@ -1,0 +1,149 @@
+.lcPanel {
+  padding: 18px;
+  background:
+    radial-gradient(
+      1200px 600px at 20% 0%,
+      rgba(34, 90, 255, 0.12),
+      transparent 60%
+    ),
+    radial-gradient(
+      900px 520px at 80% 0%,
+      rgba(0, 255, 180, 0.08),
+      transparent 55%
+    ),
+    rgba(6, 10, 18, 0.75);
+  border-radius: 16px;
+}
+
+:root {
+  --accent: #1e88ff;
+}
+
+.lcHeader {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+.lcTitle {
+  margin: 0;
+  font-size: 26px;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.lcSubtitle {
+  margin: 6px 0 0;
+  color: rgba(255, 255, 255, 0.55);
+  line-height: 1.45;
+}
+
+.lcSwitch {
+  display: inline-flex;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 4px;
+  gap: 4px;
+}
+
+.lcSwitchBtn {
+  border: 0;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.7);
+  padding: 8px 14px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.lcSwitchBtn.isActive {
+  background: rgba(30, 136, 255, 0.18);
+  color: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.25);
+}
+
+.lcCard {
+  margin-top: 10px;
+  border-radius: 16px;
+  background: rgba(10, 18, 35, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 16px;
+}
+
+.lcCardTop {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 14px;
+  margin-bottom: 8px;
+}
+
+.lcCardTitle {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.lcMuted {
+  margin: 6px 0 0;
+  color: rgba(255, 255, 255, 0.55);
+  font-size: 13px;
+}
+
+.lcStrong {
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 700;
+}
+
+.lcLegend {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-top: 4px;
+}
+
+.lcLegend .lcDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: var(--accent);
+  box-shadow: 0 0 0 3px rgba(30, 136, 255, 0.14);
+}
+
+.lcChartWrap {
+  width: 100%;
+  height: 320px;
+  margin-top: 10px;
+}
+
+.lcChart {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.lcTooltip {
+  background: rgba(10, 18, 35, 0.92);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.35);
+  border-radius: 12px;
+  padding: 10px 12px;
+  min-width: 140px;
+  backdrop-filter: blur(8px);
+}
+
+.lcTooltipLabel {
+  color: rgba(255, 255, 255, 0.65);
+  font-size: 12px;
+  margin-bottom: 4px;
+}
+
+.lcTooltipValue {
+  color: rgba(255, 255, 255, 0.92);
+  font-weight: 800;
+  font-size: 14px;
+}

@@ -1,18 +1,22 @@
+// AppShell.tsx
 import { useEffect, useState } from "react";
+import { Outlet } from "react-router-dom";
 
 import "./styles/appShell.css";
 
 import { Sidebar } from "../components/layout/Sidebar";
 import { MainHeader } from "../components/layout/MainHeader";
-import { useTranslation } from "react-i18next";
+import { SettingsDrawer } from "../components/layout/SettingsDrawer";
 
 export function AppShell() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const { t } = useTranslation();
+  const [settingsOpen, setSettingsOpen] = useState(false);
 
   useEffect(() => {
     const onResize = () => {
       if (window.innerWidth >= 900) setSidebarOpen(false);
+      // opcional: cerrar settings también en desktop
+      // if (window.innerWidth >= 900) setSettingsOpen(false);
     };
     window.addEventListener("resize", onResize);
     return () => window.removeEventListener("resize", onResize);
@@ -23,15 +27,25 @@ export function AppShell() {
       <Sidebar open={sidebarOpen} onClose={() => setSidebarOpen(false)} />
 
       <section className="main">
-        <MainHeader onOpenSidebar={() => setSidebarOpen(true)} />
+        <MainHeader
+          onOpenSidebar={() => {
+            setSettingsOpen(false);
+            setSidebarOpen(true);
+          }}
+          onOpenSettings={() => {
+            setSidebarOpen(false);
+            setSettingsOpen(true);
+          }}
+        />
+
         <main className="mainContent">
-          <div className="card">
-            <h2 style={{ margin: "0 0 8px" }}>VP 360</h2>
-            <p style={{ margin: 0, color: "var(--muted)", lineHeight: 1.5 }}>
-              {t("appShell.description")}
-            </p>
-          </div>
+          <Outlet />
         </main>
+
+        <SettingsDrawer
+          open={settingsOpen}
+          onClose={() => setSettingsOpen(false)}
+        />
       </section>
     </div>
   );

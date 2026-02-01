@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { useAuth } from "../auth/auth.store";
-import "./LoginPage.css";
+import { useAuth } from "../../auth/auth.store";
+import "./styles/LoginPage.css";
 import { useTranslation } from "react-i18next";
-import { ThemeLogo } from "../components/common/ThemeLogo";
+import { ThemeLogo } from "../../components/common/ThemeLogo";
 
 export function LoginPage() {
   const { t } = useTranslation();
