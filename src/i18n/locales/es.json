@@ -2,12 +2,37 @@
   "app": {
     "name": "VP 360"
   },
+
+  "language": {
+    "spanish": "Español",
+    "english": "Inglés",
+    "changeLanguage": "Cambiar idioma"
+  },
+
   "header": {
+    "settings": {
+      "theme": {
+        "title": "Tema",
+        "dark": " 🌙 Oscuro",
+        "light": "☀️ Claro",
+        "changeTheme": "Cambiar tema"
+      },
+      "title": "Configuración",
+      "changeTheme": "Cambiar tema",
+      "openSettings": "Abrir configuración"
+    },
     "action": "Acción",
     "language": "Idioma",
     "openMenu": "Abrir menú",
     "logout": "Cerrar sesión"
   },
+
+  "updater": {
+    "checkForUpdates": "🌎 Buscar actualizaciones",
+    "noUpdateAvailable": "No hay actualizaciones disponibles",
+    "errorCheckingUpdates": "No se pudo buscar/instalar la actualización: "
+  },
+
   "login": {
     "title": "VP 360",
     "enter": "Entrar",
@@ -18,15 +43,94 @@
     "attemptsLeft": "Intentos restantes:",
     "subtitle": "Inicia sesión"
   },
+
   "sidebar": {
     "brandSubtitle": "Diseño de escritorio",
     "items": {
       "home": "Inicio",
+      "nexia": "Nexia",
+      "general": "General",
+      "tools": "Herramientas",
+      "security": "Seguridad",
       "projects": "Proyectos",
-      "tools": "Herramientas"
+      "estradosImms": "Estrados IMMS"
     }
   },
+
   "appShell": {
     "description": "v1.0.4 En móvil el menú es drawer. En tablet el menú se queda visible en modo rail (solo iconos con tooltip). En desktop se muestra completo."
+  },
+
+  "pages": {
+    "home": {
+      "title": "VP 360",
+      "description": "v1.0.4 En móvil el menú es drawer. En tablet el menú se queda visible en modo rail (solo iconos con tooltip). En desktop se muestra completo."
+    },
+    "projects": {
+      "title": "Proyectos",
+      "description": "Aquí puedes gestionar todos tus proyectos."
+    },
+    "settings": {
+      "title": "Herramientas",
+      "description": "Configura las herramientas de tu aplicación."
+    },
+    "nexia": {
+      "title": "Nexia",
+      "description": "Herramientas y configuraciones relacionadas con Nexia."
+    }
+  },
+
+  "nexia": {
+    "verySafe": " Muy seguro",
+    "recommended": " Recomendado",
+    "conservative": " Conservador",
+    "startOver": "Empezar desde 0",
+    "startDownload": "Iniciar descarga",
+    "generateZip": "Crear zip al finalizar",
+    "continueDownload": "Continuar descarga",
+    "timeDownloadLabel": "Selecciona el tiempo entre cada descarga:",
+
+    "immsCourt": {
+      "title": "Estrados IMMS",
+      "downloadDetails": "Detalles de descarga",
+      "description": "Gestión de estrados para el IMMS."
+    },
+
+    "confirmationDownload": {
+      "header": "Confirmar descarga",
+      "message": "¿Estás seguro de que deseas iniciar la descarga?"
+    },
+
+    "downloadDetails": {
+      "lastUpdate": "Última actualización",
+      "timeElapsed": "Tiempo transcurrido",
+      "averageSpeed": "Velocidad promedio",
+      "processedFiles": "Archivos procesados",
+      "totalSizeDownloaded": "Tamaño total descargado",
+      "lastFileDownloaded": "Último archivo descargado",
+      "estimatedTimeRemaining": "Tiempo estimado restante"
+    }
+  },
+
+  "common": {
+    "no": "No",
+    "yes": "Sí",
+    "day": "Día",
+    "month": "Mes",
+    "week": "Semana",
+    "save": "Guardar",
+    "close": "Cerrar",
+    "search": "Buscar",
+    "errors": "Errores",
+    "cancel": "Cancelar",
+    "continue": "Continuar",
+    "download": "Descargar",
+    "recovered": "Recuperados",
+    "downloaded": "Descargados",
+    "downloading": "Descargando",
+    "statistics": "Estadísticas",
+    "alreadyExist": "Ya existían",
+    "generalStatus": "Estado general",
+    "detailedInfo": "Información detallada"
   }
 }

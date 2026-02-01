@@ -2,31 +2,136 @@
   "app": {
     "name": "VP 360"
   },
+
+  "language": {
+    "spanish": "Spanish",
+    "english": "English",
+    "changeLanguage": "Change language"
+  },
+
   "header": {
+    "settings": {
+      "theme": {
+        "title": "Theme",
+        "dark": "🌙 Dark",
+        "light": "☀️ Light",
+        "changeTheme": "Change theme"
+      },
+      "title": "Settings",
+      "changeTheme": "Change theme",
+      "openSettings": "Open settings"
+    },
     "action": "Action",
     "logout": "Sign out",
     "language": "Language",
-    "openMenu": "Open menu"
+    "openMenu": "Open menu",
+    "openSettings": "Open settings"
   },
+
+  "updater": {
+    "checkForUpdates": "🌎 Check for updates",
+    "noUpdateAvailable": "No updates available",
+    "errorCheckingUpdates": "Could not check/install update: "
+  },
+
   "login": {
     "title": "VP 360",
     "enter": "Sign in",
+    "subtitle": "Sign in",
     "username": "Username",
     "password": "Password",
     "validating": "Validating...",
     "attemptsLeft": "Attempts left",
-    "invalid": "Invalid credentials.",
-    "subtitle": "Sign in"
+    "invalid": "Invalid credentials."
   },
+
   "sidebar": {
     "brandSubtitle": "Desktop layout",
     "items": {
       "home": "Home",
       "tools": "Tools",
-      "projects": "Projects"
+      "nexia": "Nexia",
+      "general": "General",
+      "security": "Security",
+      "projects": "Projects",
+      "estradosImms": "IMMS Courts"
     }
   },
+
   "appShell": {
     "description": "v1.0.4 On mobile the menu is a drawer. On tablet the menu stays visible in rail mode (icons only with tooltip). On desktop it is shown fully."
+  },
+
+  "pages": {
+    "home": {
+      "title": "VP 360",
+      "description": "v1.0.4 On mobile the menu is a drawer. On tablet the menu stays visible in rail mode (icons only with tooltip). On desktop it is shown fully."
+    },
+    "projects": {
+      "title": "Projects",
+      "description": "Here you can manage all your projects."
+    },
+    "settings": {
+      "title": "Tools",
+      "description": "Configure your application tools."
+    },
+    "nexia": {
+      "title": "Nexia",
+      "description": "Nexia related tools and settings."
+    }
+  },
+
+  "nexia": {
+    "verySafe": " Very safe",
+    "startOver": "Start over",
+    "recommended": " Recommended",
+    "conservative": " Conservative",
+    "startDownload": "Start downloading",
+    "continueDownload": "Continue downloading",
+    "generateZip": "Generate zip upon completion",
+    "timeDownloadLabel": "Select the time between each download:",
+
+    "immsCourt": {
+      "title": "IMMS Courts",
+      "downloadDetails": "Download details",
+      "description": "Management of courts for IMMS."
+    },
+
+    "confirmationDownload": {
+      "message": "Are you sure you want to start downloading?",
+      "header": "Confirm download"
+    },
+
+    "downloadDetails": {
+      "lastUpdate": "Last update",
+      "timeElapsed": "Time elapsed",
+      "averageSpeed": "Average speed",
+      "processedFiles": "Processed files",
+      "lastFileDownloaded": "Last file downloaded",
+      "totalSizeDownloaded": "Total size downloaded",
+      "estimatedTimeRemaining": "Estimated time remaining"
+    }
+  },
+
+  "common": {
+    "no": "No",
+    "yes": "Yes",
+    "day": "Day",
+    "save": "Save",
+    "week": "Week",
+    "month": "Month",
+    "close": "Close",
+    "cancel": "Cancel",
+    "search": "Search",
+    "errors": "Errors",
+    "download": "Download",
+    "continue": "Continue",
+    "recovered": "Recovered",
+    "downloaded": "Downloaded",
+    "statistics": "Statistics",
+    "downloading": "Downloading",
+    "alreadyExist": "Already existed",
+    "generalStatus": "General status",
+    "detailedInfo": "Detailed information"
   }
 }

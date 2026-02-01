@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { runManualUpdate } from "./update";
-import { useTheme } from "../theme/theme.store";
+import { useTranslation } from "react-i18next";
 
 export function UpdateButton() {
-  const { theme } = useTheme();
+  const { t } = useTranslation();
   const [loading, setLoading] = useState(false);
 
   const onClick = async () => {
@@ -15,31 +15,31 @@ export function UpdateButton() {
     setLoading(false);
 
     if (res.status === "no-update") {
-      alert("No hay actualizaciones disponibles.");
+      alert(t("updater.noUpdateAvailable"));
       return;
     }
 
     if (res.status === "cancelled") {
-      // No molestamos al usuario
       return;
     }
 
     if (res.status === "error") {
-      alert(`No se pudo buscar/instalar la actualización:\n\n${res.error}`);
+      alert(`${t("updater.errorCheckingUpdates")}\n\n${res.error}`);
       return;
     }
   };
 
   return (
     <button
+      style={{ marginLeft: 28 }}
       className="iconBtn"
       type="button"
       onClick={onClick}
       disabled={loading}
-      aria-label="Buscar actualizaciones"
-      title="Buscar actualizaciones"
+      aria-label={t("common.search")}
+      title={t("updater.checkForUpdates")}
     >
-      {theme === "dark" ? "🌎" : "🌎"}
+      {t("common.search")}
     </button>
   );
 }

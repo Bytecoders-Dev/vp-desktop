@@ -32,6 +32,16 @@
   border-color: rgba(255, 255, 255, 0.18);
 }
 
+.sbItem.active {
+  background: var(--primary);
+  border-color: var(--primary);
+}
+
+.sbItem.active:hover {
+  background: var(--primary);
+  opacity: 0.9;
+}
+
 .sbIcon {
   width: 22px;
   display: grid;
@@ -63,6 +73,29 @@
   font-size: 13px;
   white-space: nowrap;
   box-shadow: var(--shadow);
+}
+
+.sbGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.sbGroupBtn {
+  width: 100%;
+  cursor: pointer;
+  text-align: left;
+}
+
+.sbCaret {
+  margin-left: auto;
+  opacity: 0.8;
+}
+
+.sbChildren {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
 }
 
 /* ===== Tablet rail: ocultamos texto y mostramos tooltip al hover ===== */
